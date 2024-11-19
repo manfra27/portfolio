@@ -9,42 +9,54 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 2; /* Ensure it is behind other content */
-  color: rgb(0, 0, 0); /* Adjust color and opacity as needed */
-  font-size: 20; /* Adjust font size as needed */
+  z-index: 2;
+  /* Ensure it is behind other content */
+  color: rgb(0, 0, 0);
+  /* Adjust color and opacity as needed */
+  font-size: 20;
+  /* Adjust font size as needed */
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.847);
   list-style: none;
   overflow-y: auto;
 }
+
 .list-point {
   font-family: "San Francisco", Arial, sans-serif;
   margin-top: 20px;
   line-height: 1.2;
 }
+
 .popup-content {
   padding-left: calc(10 * 1vw);
   padding-right: calc(10 * 1vw);
   padding-top: calc(10 * 1vh);
   padding-bottom: calc(10 * 1vh);
 }
+
 .close-popup {
-  font-size: 80px; /* Adjust font size as needed */
+  font-size: 80px;
+  /* Adjust font size as needed */
   color: rgb(0, 0, 0);
 }
+
 .close-popup:hover {
   background-color: #000000;
   color: #ffffff;
 }
 
 .button {
-  z-index: 1; /* Ensure it is behind other content */
+  z-index: 1;
+  /* Ensure it is behind other content */
   display: inline-block;
-  padding: 5px 5px; /* Adjust padding as needed */
+  padding: 5px 5px;
+  /* Adjust padding as needed */
   margin: 20px 20px;
   background-color: rgba(255, 255, 255, 0.81);
-  color: #000000; /* White text color */
-  text-decoration: none; /* Remove underline for links */
+  color: #000000;
+  /* White text color */
+  text-decoration: none;
+  /* Remove underline for links */
   border-radius: 5px;
   border: none;
   font-family: "San Francisco", Arial, sans-serif;
@@ -53,6 +65,7 @@ body {
   backdrop-filter: blur(2px);
 
 }
+
 .button:hover {
   background-color: #000000;
   color: #ffffff;
@@ -63,9 +76,11 @@ body {
   position: fixed;
   right: 0;
   bottom: 0;
-  z-index: -1; /* Ensure it is behind other content */
-  color: transparent;
-  font-size: calc(12 * 2vw); /* Adjust font size as needed */
+  z-index: -1;
+  /* Ensure it is behind other content */
+  color: black;
+  font-size: calc(12 * 2vw);
+  /* Adjust font size as needed */
   text-align: right;
   direction: rtl;
   width: 100vw;
@@ -73,13 +88,7 @@ body {
   font-family: "San Francisco", Arial, sans-serif;
   font-weight: bolder;
   line-height: 0.8;
-  background-image: url('your-pattern-image.png');
   background-clip: text;
   display: inline-block;
   background-size: cover;
 }
-
-
-
-
-
