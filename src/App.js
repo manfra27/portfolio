@@ -31,7 +31,6 @@ const App = () => {
                         .map((year) => (
                             <div key={year} className="year-list">
                                 <div className="year">{year}</div>
-
                                 <div className="button-container">
                                     {groupedData[year].map((item) => (
                                         <div key={item.What}>
@@ -41,20 +40,17 @@ const App = () => {
                                             >
                                                 {item.What}
                                             </button>
-
                                             <div className={`details ${selectedWhat === item.What ? "expand" : ""}`}>
-                                                <div >
-                                                    {Object.entries(item).map(([key, value]) => (
-                                                        key !== "What" && key !== "date" && (
-                                                            <div className="key-value-row" key={key}>
-                                                                <div className="key">{key}</div>
-                                                                <div className="value">
-                                                                    {Array.isArray(value) ? value.join(", ") : value}
-                                                                </div>
+                                                {Object.entries(item).map(([key, value]) => (
+                                                    key !== "What" && key !== "date" && (
+                                                        <div className="key-value-row" key={key}>
+                                                            <div className="key">{key}</div>
+                                                            <div className="value">
+                                                                {Array.isArray(value) ? value.join(", ") : value}
                                                             </div>
-                                                        )
-                                                    ))}
-                                                </div>
+                                                        </div>
+                                                    )
+                                                ))}
                                             </div>
                                         </div>
                                     ))}
@@ -104,11 +100,8 @@ const App = () => {
                 <div className="right-name-part">
                     <div className="name-text">Manuel <br />Franzini</div>
                 </div>
-
             </div>
-
         </div>
-
     );
 };
 export default App;

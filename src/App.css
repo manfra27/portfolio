@@ -178,30 +178,6 @@ box-sizing: border-box;
     padding: 10px; 
     margin-bottom: 15px;
 }
-.details:not(.expand) {
-}
-/* 
-.details {
-    overflow: hidden; 
-    max-height: 0; 
-    transform: translateX(100%);
-    opacity: 0; 
-    transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.6s ease; 
-    padding: 0 10px; 
-}
-.details.expand {
-    max-height: 5000px; 
-    transform: translateX(0%);
-    opacity: 1;
-    padding: 10px; 
-}
-.details:not(.expand) {
-    transform: translateX(30%); 
-    opacity: 0;
-    max-height: 0; 
-    padding: 0 10px; 
-}
-*/
 
 
 
