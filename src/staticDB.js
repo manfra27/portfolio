@@ -68,7 +68,6 @@ export const projects = [
     {
         What: 'Project 3',
         techstack: ['React', 'Node.js', 'MongoDB'],
-        customer: 'ABC Inc.',
         description: 'Lorem ipsum dolor sit amet.',
         date: '2023',
         customer: 'XYZ Corp.',

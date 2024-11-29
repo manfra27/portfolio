@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { projects, personalDetails } from './staticDB';
 import './App.css';
 
@@ -30,7 +30,9 @@ const App = () => {
                         .sort((a, b) => b - a)
                         .map((year) => (
                             <div key={year} className="year-list">
-                                <div className="year">{year}</div>
+                                <div className="year">
+                                    {year}
+                                </div>
                                 <div className="button-container">
                                     {groupedData[year].map((item) => (
                                         <div key={item.What}>
@@ -104,10 +106,5 @@ const App = () => {
         </div>
     );
 };
+
 export default App;
-
-
-
-/*
-
-*/
