@@ -156,13 +156,3 @@ const App = () => {
 };
 
 export default App;
-
-/*
-
- <div className="right-name-part">
-                    <div className="name-text">
-                        Manuel <br />
-                        Franzini
-                    </div>
-                </div>
-*/
