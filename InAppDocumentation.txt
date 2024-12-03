@@ -3,17 +3,15 @@
 
 
 Bugs & tickets:
-> Additional spacing on bottom of cv and project section.
-> Responsive width of cv value class type horizontal listing.
-> Splitt right section by name & cv.
+
 > Remove and merge css classes
-> Clean format App.js
-> staticDB holistic set of default data keys
+> Remove comments of code and format it propperly.
+> URL links rendering to buttons (for key "Demo")
+> Display only keys with values.
+
 > deploy to deno
 > custom domain name "manuelfranzini.ch"
 > link github & linkedin and render them to button and hiding urls.
 > Breakpoints for responsiveness (just tablet & mobile)
 > Special font
-
-
 

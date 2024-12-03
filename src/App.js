@@ -2,96 +2,115 @@ import React, { useState } from 'react';
 import { projects, personalDetails } from './staticDB';
 import './App.css';
 
+function cleanData(obj) {
+    const cleaned = {};
+    for (const key in obj) {
+        if (Array.isArray(obj[key])) {
+            const filteredArray = obj[key].filter(value => value !== "");
+            if (filteredArray.length > 0) {
+                cleaned[key] = filteredArray;
+            }
+        } else if (obj[key] !== null && obj[key] !== "") {
+            cleaned[key] = obj[key];
+        }
+    }
+    return cleaned;
+}
+
 const App = () => {
-    const [selectedWhat, setSelectedWhat] = useState(null);
+    const [selectedMenu, setSelectedMenu] = useState('Project'); // Default to "Project"
+    const [selectedProject, setSelectedProject] = useState(null); // Track selected project
 
     const groupedData = projects.reduce((acc, item) => {
         if (!acc[item.date]) {
-            acc[item.date] = []; // Initialize an empty array for a new year
+            acc[item.date] = [];
         }
-        acc[item.date].push(item); // Add the project to the array for the corresponding year
+        acc[item.date].push(item);
         return acc;
-    }, {}); // Start with an empty object
+    }, {});
 
-    const handleButtonClick = (what) => {
-        setSelectedWhat(selectedWhat === what ? null : what);
+    const handleProjectClick = (project) => {
+        console.log('Clicked Project:', project); // Log the passed project title
+        setSelectedProject(selectedProject === project ? null : project);
     };
 
-    return (
-        <div className="container">
-
-            <div className="left-section">
-                <div className="project-count-wrapper">
-                    <div className="project-count">{projects.length}</div>
-                </div>
-
+    const renderLeftContent = () => {
+        if (selectedMenu === 'Project') {
+            return (
                 <div className="year-list-container">
+
+                    <div className="text-big">big big big big big</div>
+                    <div className="text-medium">medium medium medium medium </div>
+                    <div className="text-small">small small small small </div>
+
                     {Object.keys(groupedData)
                         .sort((a, b) => b - a)
                         .map((year) => (
                             <div key={year} className="year-list">
-                                <div className="year">
-                                    {year}
-                                </div>
+                                <div className="year">{year}</div>
                                 <div className="button-container">
-                                    {groupedData[year].map((item) => (
-                                        <div key={item.What}>
-                                            <button
-                                                className={`button ${selectedWhat === item.What ? "active" : ""}`}
-                                                onClick={() => handleButtonClick(item.What)}
-                                            >
-                                                {item.What}
-                                            </button>
-                                            <div className={`details ${selectedWhat === item.What ? "expand" : ""}`}>
-                                                {Object.entries(item).map(([key, value]) => (
-                                                    key !== "What" && key !== "date" && (
-                                                        <div className="key-value-row" key={key}>
-                                                            <div className="key">{key}</div>
-                                                            <div className="value">
-                                                                {Array.isArray(value) ? value.join(", ") : value}
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                ))}
+
+                                    {groupedData[year]
+                                        .filter((item) => item.Title) // Only include items with a valid "Title"
+                                        .map((item) => (
+                                            <div key={`${item.date}-${item.Title}`}>
+                                                <button
+                                                    className={`button ${selectedProject === item.Title ? 'active' : ''}`}
+                                                    onClick={() => handleProjectClick(item.Title)}
+                                                >
+                                                    {item.Title}
+                                                </button>
+                                                {selectedProject === item.Title && (
+                                                    <div className={`details ${selectedProject === item.Title ? 'expand' : ''}`}>
+                                                        {Object.entries(cleanData(item))
+                                                            .filter(([key, value]) =>
+                                                                key !== 'Title' &&
+                                                                key !== 'date' &&
+                                                                value !== '')
+                                                            .map(([key, value]) => (
+                                                                <div className="key-value-row" key={key}>
+                                                                    <div className="key">{key}</div>
+                                                                    <div className="value">
+                                                                        {Array.isArray(value) ? value.join(', ') : value}
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                    </div>
+                                                )}
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+
                                 </div>
                             </div>
                         ))}
                 </div>
-            </div >
-
-
-
-            <div className="right-section">
-                <div className="right-cv-part scrollable">
-                    {Object.entries(personalDetails).map(([key, values]) => (
+            );
+        } else if (selectedMenu === 'Contact') {
+            return (
+                <div className="contact-content">
+                    <h3>Contact Details</h3>
+                    <p>Email: example@example.com</p>
+                    <p>Phone: +41 79 123 45 67</p>
+                </div>
+            );
+        } else if (selectedMenu === 'CV') {
+            return (
+                <div className="cv-content">
+                    {Object.entries(cleanData(personalDetails)).map(([key, values]) => (
                         <div className="cv-key-value-row" key={key}>
                             <div className="cv-key">{key}</div>
                             <div
-                                className={`value ${key === 'OS' ||
-                                    key === 'IDE' ||
-                                    key === 'Conception' ||
-                                    key === 'LCM' ||
-                                    key === 'Virtualization' ||
-                                    key === 'VersionControl' ||
-                                    key === 'Coding' ||
-                                    key === 'Links' ||
-                                    key === 'Contact' ||
-                                    key === 'Automation' ||
-                                    key === 'Languages'
-                                    ? 'horizontal' : 'vertical'
+                                className={`value ${['OS', 'IDE', 'Conception', 'LCM', 'Virtualization', 'VersionControl', 'Coding', 'Links', 'Contact', 'Automation', 'Languages'].includes(key)
+                                    ? 'horizontal'
+                                    : 'vertical'
                                     }`}
                             >
                                 {Array.isArray(values) ? (
-                                    values
-                                        .filter(value => value)
-                                        .map((value, index) => (
-                                            <div className="cv-value" key={index}>
-                                                {value}
-                                            </div>
-                                        ))
+                                    values.map((value, index) => (
+                                        <div className="cv-value" key={index}>
+                                            {value}
+                                        </div>
+                                    ))
                                 ) : (
                                     <div className="cv-value">{values}</div>
                                 )}
@@ -99,8 +118,37 @@ const App = () => {
                         </div>
                     ))}
                 </div>
-                <div className="right-name-part">
-                    <div className="name-text">Manuel <br />Franzini</div>
+            );
+        }
+    };
+
+    return (
+        <div className="container">
+            {/* Left Section */}
+            <div className="left-section">{renderLeftContent()}</div>
+
+            {/* Right Section */}
+            <div className="right-section">
+                <div className="menu-container">
+                    <div className="menu">
+                        {['Project', 'CV', 'Contact'].map((menu) => (
+                            <button
+                                key={menu}
+                                className={`button ${selectedMenu === menu ? 'active' : ''}`} // Styled like project titles
+                                onClick={() => setSelectedMenu(menu)}
+                            >
+                                {menu}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+
+            </div>
+            <div className="footer">
+                <div className="name-text">
+                    Manuel <br />
+                    Franzini
                 </div>
             </div>
         </div>
@@ -108,3 +156,13 @@ const App = () => {
 };
 
 export default App;
+
+/*
+
+ <div className="right-name-part">
+                    <div className="name-text">
+                        Manuel <br />
+                        Franzini
+                    </div>
+                </div>
+*/

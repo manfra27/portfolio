@@ -54,26 +54,32 @@ html, body {
 }
 
 .right-name-part {
-    position: fixed; /* Always stays in place */
+    position: fixed;
     bottom: 0;
     right: 0;
-    width: 33.3333%; /* Adjusted width */
-    backdrop-filter: blur(2px);
-    background: linear-gradient(to top, white, transparent);
-    z-index: 1; /* Ensure it overlays content */
+    width: 33.333%;
+    z-index: 2;
     font-weight: bold;
     text-align: center;
-    padding: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     box-sizing: border-box;
+    background-color: transparent;
 }
-
+/*    background: linear-gradient(to top, rgba(255, 255, 255, 0.18), transparent);
+*/
 .name-text {
     font-size: calc(3.4vw + 5vh); /* Dynamically scale text size */
     text-align: right;
     line-height: 0.8; /* Tighten line spacing for compactness */
-    color: black;
+    color: white;
     white-space: normal;
     padding-top: 40px;
+    background-color: transparent;
+}
+
+.menu-container {
+    margin-top: 10vh;
 }
 
 .button-container {
@@ -83,10 +89,12 @@ html, body {
     flex-wrap: wrap; /* Allow buttons to wrap */
     flex-direction: column;
     align-items: flex-start;
+    align-items: flex-start;
+    overflow: visible;
 }
 .button {
   z-index: 1;
-  display: inline-block;
+  display: flex;
   padding: 5px 10px;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.81);
@@ -96,6 +104,7 @@ html, body {
   border: none;
   font-weight: bold;
   font-size: larger;
+  border-color: black;
 }
 .button:hover {
   background-color: #000000;
@@ -104,7 +113,6 @@ html, body {
 .button.active {
   background-color: #000000;
   color: #ffffff;
-  margin-top: 30px;
 }
 
 .list-point {
@@ -149,6 +157,8 @@ box-sizing: border-box;
     flex-direction: column; /* Stack years vertically */
     gap: 20px; /* Space between year-list items */
     box-sizing: border-box;
+    /* background-color: red;*/
+    padding-left: 120px;
 }
 .year-list {
     display: flex;
@@ -173,10 +183,13 @@ box-sizing: border-box;
     padding: 0 10px; 
 }
 .details.expand {
-    max-height: 5000px; 
+    max-height: none; 
     opacity: 1;
     padding: 10px; 
     margin-bottom: 15px;
+}
+.details.hidden {
+    display: none;
 }
 
 
@@ -192,14 +205,14 @@ box-sizing: border-box;
 .key {
     text-align: left; /* Align keys to the right for symmetry */
     font-weight: bold;
-    max-width: 100px; /* Restrict the key to a maximum width */
-    word-wrap: break-word; /* Enable wrapping for long words */
-    overflow-wrap: break-word; /* Ensure compatibility for older browsers */
-    white-space: normal; /* Allow line breaks */
+    max-width: 100px; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
 }
 
 .value {
-    text-align: left; /* Align values to the left */
+    text-align: left; 
 }
 
 
@@ -210,17 +223,18 @@ box-sizing: border-box;
 .cv-detail-item {
     display: vertically;
     margin-bottom: 20px;
-    align-items: flex-start; /* Align keys and values vertically */
+    align-items: flex-start;
 }
 
 .cv-key-value-row {
     display: flex;
     margin-bottom: 30px;
     align-items: center;
+    align-content: center;
 }
 .cv-key {
-    text-align: right; /* Align keys to the right for symmetry */
-    flex: 0 0 130px; /* Fixed width for keys */
+    text-align: right;
+    flex: 0 0 130px;
     font-weight: bold;
     margin-right: 20px;
     overflow-wrap: break-word;
@@ -241,41 +255,17 @@ box-sizing: border-box;
 }
 
 
-
-/*
-.cv-value-item {
-    color: white;
-    background-color: black;
-    font-weight: lighter;
-    width: fit-content;
-    padding-top: 4px;
-    padding-bottom: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 4px;
-    text-align: center;
-}*/
-
-
-
-
-
 .value {
-    flex: 1; /* Allow the value column to take the remaining space */
+    flex: 1; 
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap if needed */
-    gap: 5px; /* Space between items */
+    flex-wrap: wrap; 
+    gap: 5px; 
 }
 
-/* Vertical layout for items */
 .value.vertical {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
 }
 
-/* Horizontal layout for items */
-.value.horizontal {
-    flex-direction: row; /* Align items horizontally */
-}
 
 .value-item {
     padding: 5px 10px;
@@ -286,130 +276,55 @@ box-sizing: border-box;
 }
 
 
-/* For WebKit browsers (Chrome, Safari) */
 .scrollable::-webkit-scrollbar,
 .left-section::-webkit-scrollbar,
 .right-cv-part::-webkit-scrollbar {
-    display: none; /* Hides scrollbars */
+    display: none;
 }
 
-/* For Firefox */
 .scrollable,
 .left-section,
 .right-cv-part {
-    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    scrollbar-width: none; 
     padding-bottom: 300px;
+    margin-bottom: 20px;
 }
 
 .left-section {
-    overflow-y: auto; /* Enable scrolling */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
-    max-height: 100vh; /* Constrain height to viewport */
+    overflow-y: auto;
+    scrollbar-width: none; 
+    max-height: 100vh; 
 }
 
 .left-section::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome/Safari */
+    display: none;
 }
 
 .right-cv-part {
-    overflow-y: auto; /* Enable scrolling */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
-    padding-right: 20px; /* Ensure padding aligns content */
+    overflow-y: auto; 
+    scrollbar-width: none; 
+    padding-right: 20px; 
 }
 
 .right-cv-part::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome/Safari */
+    display: none; 
 }
 
 
-
-
-
-
-/*
-
-body {
-  margin: 0;
-  padding: 0;
+.text-big {
+    font-size: 40px;
+}
+.text-medium {
+    font-size: 30px;
+}
+.text-small {
+    font-size: 16px;
 }
 
-.popup {
-  position: fixed;
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2;
-  color: rgb(0, 0, 0);
-  font-size: 20;
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.847);
-  list-style: none;
-  overflow-y: auto;
+.footer {
+    height: 20vh;
+    background-color: black;
 }
-.list-point {
-  font-family: "San Francisco", Arial, sans-serif;
-  margin-top: 20px;
-  line-height: 1.2;
-}
-.popup-content {
-  padding-left: calc(10 * 1vw);
-  padding-right: calc(10 * 1vw);
-  padding-top: calc(10 * 1vh);
-  padding-bottom: calc(10 * 1vh);
-}
-.close-popup {
-  font-size: 80px;
-  color: rgb(0, 0, 0);
-}
-.close-popup:hover {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.button {
-  z-index: 1;
-  display: inline-block;
-  padding: 5px 5px;
-  margin: 20px 20px;
-  background-color: rgba(255, 255, 255, 0.81);
-  color: #000000;
-  text-decoration: none;
-  border-radius: 5px;
-  border: none;
-  font-family: "San Francisco", Arial, sans-serif;
-  font-weight: bold;
-  font-size: larger;
-  backdrop-filter: blur(2px);
-}
-
-.button:hover {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-
-.background-text {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  color: transparent;
-  font-size: calc(8 * 2vw);
-  text-align: right;
-  direction: rtl;
-  width: 100vw;
-  overflow-wrap: break-word;
-  font-family: "San Francisco", Arial, sans-serif;
-  font-weight: bolder;
-  line-height: 0.8;
-  background-clip: text;
-  display: inline-block;
-  background-size: cover;
-  color: black;
-}
-
-*/
 
 
 

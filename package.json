@@ -42,5 +42,20 @@
   },
   "devDependencies": {
     "gh-pages": "^6.0.0"
+  },
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "no-unused-vars": "warn",
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn"
   }
 }
